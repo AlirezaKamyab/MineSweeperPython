@@ -6,7 +6,7 @@
     "Sy":10,
     "Cell_Width":55,
     "Cell_Height":55,
-    "Bomb_Count":1,
+    "Bomb_Count":20,
     "Bomb_Color": [255, 0, 0],
     "Flagged_Color": [0, 150, 0],
     "Hidden_Color": [255, 255, 255],
