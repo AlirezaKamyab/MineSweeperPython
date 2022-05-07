@@ -34,12 +34,16 @@ class Cells:
 
     def __set_bombs(self):
         rand = random.Random()
-        bombs = [rand.randint(1, self.sx * self.sy) for _ in range(self.bomb_count)]
+        bombs = [x for x in range(1, self.sx * self.sy + 1)]
+        while len(bombs) > self.bomb_count:
+            safe = rand.randint(0, len(bombs) - 1)
+            bombs.pop(safe)
 
         cnt = 1
         for i in range(self.sx):
             for j in range(self.sy):
-                if cnt in bombs: self.cells[i][j].set_bomb()
+                if cnt in bombs: 
+                    self.cells[i][j].set_bomb()
                 cnt += 1
 
 
@@ -68,7 +72,7 @@ class Cells:
         V = [-1, 0, 1]
         i, j = pos[0], pos[1]
 
-        if self.cells[i][j].state != cell.Cell.HIDDEN: return
+        if self.cells[i][j].state != cell.Cell.HIDDEN and self.cells[i][j].state != cell.Cell.FLAGGED: return
         self.cells[i][j].reveal() 
         if self.cells[i][j].is_bomb: return
 
@@ -77,14 +81,16 @@ class Cells:
             for v in V:
                 if h == 0 and v == 0: continue
                 if not (0 <= j + v < self.sy): continue
-                if self.cells[i + h][j + v].number == 0:
+
+                next = self.cells[i + h][j + v]
+                if next.number == 0:
                     t = threading.Thread(target=self.reveal, args=((i + h, j + v), ))
                     t.start()
                     t.join()
                     continue
 
                 if self.cells[i][j].number == 0:
-                    self.cells[i + h][j + v].reveal()
+                    next.reveal()
                             
 
     
@@ -109,7 +115,7 @@ class Cells:
         found = 0
         for i in self.cells:
             for j in i:
-                if j.is_bomb and j.state == cell.Cell.FLAGGED: found += 1
+                if j.is_bomb and (j.state == cell.Cell.FLAGGED or j.state == cell.Cell.BOMB): found += 1
         
         return self.bomb_count, found
 

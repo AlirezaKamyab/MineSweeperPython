@@ -1,12 +1,12 @@
 {
-    "Width":900,
-    "Height":500,
+    "Width":1000,
+    "Height":600,
     "Font_Name":"Arial",
     "Sx":10,
     "Sy":10,
-    "Cell_Width":45,
-    "Cell_Height":45,
-    "Bomb_Count":20,
+    "Cell_Width":55,
+    "Cell_Height":55,
+    "Bomb_Count":1,
     "Bomb_Color": [255, 0, 0],
     "Flagged_Color": [0, 150, 0],
     "Hidden_Color": [255, 255, 255],
@@ -15,5 +15,9 @@
     "Background": [255, 255, 255],
     "Win_Color": [0, 100, 255],
     "Lose_Color": [255, 0, 0],
-    "Font_Size": 20
+    "Font_Size": 25,
+    "Name": "Unnamed",
+    "Bomb": 250,
+    "Flag": 100,
+    "Safe": 50
 }

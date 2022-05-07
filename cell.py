@@ -79,7 +79,6 @@ class Cell:
 
 
     def reveal(self):
-        if self.state != Cell.HIDDEN: return
         if self.is_bomb:
             self.state = Cell.BOMB
         else:
@@ -102,3 +101,5 @@ class Cell:
         __txtobj = pygame.font.SysFont(consts.FONT_NAME, self.font_size, True)
         txt = __txtobj.render(str(self.number), 1, consts.FOREGROUND)
         self.surface.blit(txt, (self.pos[0] + self.size[0] / 2 - txt.get_width() / 2, self.pos[1] + self.size[1] / 2 - txt.get_height() / 2))
+
+        
