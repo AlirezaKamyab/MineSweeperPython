@@ -1,4 +1,3 @@
-from debugpy import listen
 import cell, cells, consts
 import pygame
 import threading

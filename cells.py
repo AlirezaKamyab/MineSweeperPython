@@ -1,5 +1,4 @@
 import cell, consts
-import pygame
 import random
 import threading
 
